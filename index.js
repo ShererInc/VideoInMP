@@ -9,11 +9,13 @@
 // @description:zh-CN   一键获取公众号视频的ID（wxv）
 // @description:ug      سالوندىكى فىلىملەرنىڭ نومۇرىغا (wxv) ئاسان ئېرىشىش ئۈچۈن ئىشلىتىلىدۇ
 // @license             MIT
+// @supportURL          https://github.com/ShererInc/VideoInMP
 // @match               *://mp.weixin.qq.com/*
 // @require             https://unpkg.com/jquery@3.6.0/dist/jquery.min.js
 // @require             https://unpkg.com/sweetalert2@10.16.6/dist/sweetalert2.all.min.js
 // @run-at              document-idle
 // @grant               GM_setClipboard
+// @grant               GM_xmlhttpRequest
 // @icon                https://www.ixinchuang.com/image/logo_new.png
 // ==/UserScript==
 
@@ -85,37 +87,42 @@
     style.innerHTML = `
         .ltr { direction: ltr !important; }
         .rtl { direction: rtl !important; }
-        .sherer-wxv { cursor: pointer; background-color: #f5f5f5; padding: 5px 8px; border-radius: 3px; white-space: nowrap; }
-        .sherer-wxv:hover { background-color: #e9e9e9; }
+        .sherer-wxv-td { cursor: pointer; background-color: #f5f5f5; padding: 5px 8px; border-radius: 3px; white-space: nowrap; }
+        .sherer-wxv-td:hover { background-color: #e9e9e9; }
         .sherer-font { font-family: 'UKIJ Ekran', 'UKIJ Tor', 'UKIJ Basma', 'ALKATIP Tor', 'ALKATIP', 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
     `;
     document.head.appendChild(style);
 
-    // Get cgiData
-    let cgiData = window?.wx?.cgiData || wx?.cgiData || {};
-    if (!cgiData || !cgiData.item || !cgiData.item.length) { return; }
+    // Main function
+    const run = (list) => {
+        if (!list || !list.length) { return; }
 
-    // Insert wxv field in thead
-    let th = $(`<th class="tc">wxv</th>`);
-    $('.weui-desktop-table__hd').find('th').eq(0).after(th);
+        // Insert wxv field in thead
+        let th = $(`<th class="sherer-wxv-th tc">wxv</th>`);
+        if (!$('.sherer-wxv-th').length) { $('.weui-desktop-table__hd').find('th').eq(0).after(th); }
 
-    // Insert wxv field in tbody
-    $('.weui-desktop-table__bd').find('tr').each(function (index) {
-        let tr = $(this);
-        let check = tr.find('.weui-desktop-simple-video__name-td');
-        if (!check.length) { return; }
-        let wxv = cgiData.item[index].content;
-        let td = $(`<td><span class="sherer-wxv">${wxv}</span></td>`);
-        tr.find('td').eq(0).after(td);
-    });
+        // Insert wxv field in tbody
+        if ($('.sherer-wxv-td').length) { return; }
+        $('.weui-desktop-table__bd').find('tr').each(function (index) {
+            let tr = $(this);
+            let check = tr.find('.weui-desktop-simple-video__name-td');
+            if (!check.length) { return; }
+            let wxv = list[index].content;
+            let td = $(`<td><span class="sherer-wxv-td">${wxv}</span></td>`);
+            tr.find('td').eq(0).after(td);
+        });
 
-    // Set title field font
-    $('.weui-desktop-simple-video__title').addClass('sherer-font');
+        // Set title field font
+        $('.weui-desktop-simple-video__title').addClass('sherer-font');
 
-    // Add click event for wxv field of copy content
-    $('.sherer-wxv').on('click', function () {
-        let wxv = $(this).text();
-        GM_setClipboard(wxv, 'text');
-        message.success(tc('copyed'));
-    });
+        // Add click event for wxv field of copy content
+        $('.sherer-wxv-td').on('click', function () {
+            let wxv = $(this).text();
+            GM_setClipboard(wxv, 'text');
+            message.success(tc('copyed'));
+        });
+    };
+
+    // Run
+    run((window?.wx?.cgiData || wx?.cgiData || {}).item);
 })();
