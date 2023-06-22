@@ -35,4 +35,4 @@ Easy to get video ids(wxv) in WeChat Official Accounts Platform.
 
 ### يېڭىلاش تارىخى
 
-#### v0.0.1 (2023/06/22)
+#### نەشر 0.0.1 (2023/06/22)
