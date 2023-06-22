@@ -9,6 +9,9 @@ Easy to get video ids(wxv) in WeChat Official Accounts Platform.
 
 ### Change Logs
 
+#### v0.0.2 (2023/06/23)
+- fixed cant get video id when search issue
+
 #### v0.0.1 (2023/06/22)
 - added `wxv` field and highlighted
 - added copy `wxv` field content when clicked
@@ -22,6 +25,9 @@ Easy to get video ids(wxv) in WeChat Official Accounts Platform.
 
 ### 更新历史
 
+#### v0.0.2（2023/06/23）
+- 修复 搜索时无法获取视频ID的问题
+
 #### v0.0.1（2023/06/22）
 - 新增 `wxv`视频ID字段并突出显示
 - 新增 `wxv`视频ID字段被点击时自动复制内容
@@ -34,5 +40,7 @@ Easy to get video ids(wxv) in WeChat Official Accounts Platform.
 سالوندىكى فىلىملەرنىڭ نومۇرىغا (wxv) ئاسان ئېرىشىش ئۈچۈن ئىشلىتىلىدۇ
 
 ### يېڭىلاش تارىخى
+
+#### نەشر 0.0.2 (2023/06/23)
 
 #### نەشر 0.0.1 (2023/06/22)

@@ -3,7 +3,7 @@
 // @name:zh-CN          公众号视频
 // @name:ug             سالوندىكى فىلىم
 // @namespace           Sherer
-// @version             0.0.1
+// @version             0.0.2
 // @author              Sherer(شەرەر)
 // @description         Easy to get video ids(wxv) in WeChat Official Accounts Platform.
 // @description:zh-CN   一键获取公众号视频的ID（wxv）
@@ -108,7 +108,11 @@
             let check = tr.find('.weui-desktop-simple-video__name-td');
             if (!check.length) { return; }
             let wxv = list[index].content;
-            let td = $(`<td><span class="sherer-wxv-td">${wxv}</span></td>`);
+            if (!wxv) {
+                let url = list[index].content_url;
+                if (url) { wxv = (url.match(/vid=(\w*)/) || [''])[1]; }
+            }
+            let td = $(`<td><span class="sherer-wxv-td">${wxv || ''}</span></td>`);
             tr.find('td').eq(0).after(td);
         });
 
