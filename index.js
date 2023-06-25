@@ -7,7 +7,7 @@
 // @author              Sherer(شەرەر)
 // @description         Easy to get video ids(wxv) and audio play url in WeChat Official Accounts Platform
 // @description:zh-CN   一键获取微信公众号视频素材ID（wxv）和音频素材播放地址
-// @description:ug      ئۈندىدار سالونىدىكى سىنلارنىڭ نومۇرى (wxv) بىلەن ئۈن قويۇش ئادرېسىغا ئاسانلا ئېرىشكىلى بولىدۇ
+// @description:ug      ‫ئۈندىدار سالونىدىكى سىنلارنىڭ نومۇرى (wxv) بىلەن ئۈن قويۇش ئادرېسىغا ئاسانلا ئېرىشكىلى بولىدۇ
 // @license             MIT
 // @supportURL          https://github.com/ShererInc/Wx-OA-Assistant
 // @match               *://mp.weixin.qq.com/*
