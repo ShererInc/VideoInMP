@@ -23,19 +23,34 @@
 
     // global variables
     const lang = navigator.language || navigator.userLanguage; // e.g. "en-US"
+    const query = Object.fromEntries(new URLSearchParams(window.location.search)); // e.g. { type: "3", begin: "0", count: "20", token: "1412762085", lang: "zh_CN" }
+    const pathname = window.location.pathname; // e.g. "/cgi-bin/filepage"
 
     // Language pack
     const languages = {
         'zh-CN': {
+            dir: 'ltr',
+            wxv: 'wxv',
+            url: '链接',
+            copy: '复制',
             copyed: '内容已复制',
+            copy_url: '复制链接',
         },
         'ug': {
             dir: 'rtl',
+            wxv: 'wxv',
+            url: 'ئۇلانمىسى',
+            copy: 'كۆچۈرۈش',
             copyed: 'ئۇچۇر كۆچۈرۈلدى',
+            copy_url: 'ئۇلانمىنى كۆچۈرۈش',
         },
         'default': {
             dir: 'ltr',
+            wxv: 'wxv',
+            url: 'URL',
+            copy: 'Copy',
             copyed: 'content has been copied',
+            copy_url: 'Copy url',
         },
     };
 
@@ -86,18 +101,24 @@
     style.innerHTML = `
         .ltr { direction: ltr !important; }
         .rtl { direction: rtl !important; }
-        .sherer-wxv-td { cursor: pointer; background-color: #f5f5f5; padding: 5px 8px; border-radius: 3px; white-space: nowrap; }
-        .sherer-wxv-td:hover { background-color: #e9e9e9; }
+        .sherer-btn { cursor: pointer; background-color: #f5f5f5; padding: 5px 8px; border-radius: 3px; white-space: nowrap; }
+        .sherer-btn:hover { background-color: #e9e9e9; }
         .sherer-font { font-family: 'UKIJ Ekran', 'UKIJ Tor', 'UKIJ Basma', 'ALKATIP Tor', 'ALKATIP', 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+        .sherer-flex-column { display: flex; flex-direction: column; }
+        .sherer-justify-between { justify-content: space-between; }
+        .sherer-position-none { position: static !important; }
+        .sherer-center { text-align: center; }
     `;
     document.head.appendChild(style);
 
-    // Main function
-    const run = (list) => {
+    // Parse video
+    const runVideo = (list) => {
+        if (pathname !== '/cgi-bin/appmsg') { return; }
         if (!list || !list.length) { return; }
+        console.log('run video', list);
 
         // Insert wxv field in thead
-        let th = $(`<th class="sherer-wxv-th tc">wxv</th>`);
+        let th = $(`<th class="sherer-wxv-th tc">${tc('wxv')}</th>`);
         if (!$('.sherer-wxv-th').length) { $('.weui-desktop-table__hd').find('th').eq(0).after(th); }
 
         // Insert wxv field in tbody
@@ -111,21 +132,65 @@
                 let url = list[index].content_url;
                 if (url) { wxv = (url.match(/vid=(\w*)/) || [''])[1]; }
             }
-            let td = $(`<td><span class="sherer-wxv-td">${wxv || ''}</span></td>`);
+            let td = $(`<td><span class="sherer-wxv-td sherer-btn" data-content="${wxv || ''}">${wxv || ''}</span></td>`);
             tr.find('td').eq(0).after(td);
         });
 
         // Set title field font
         $('.weui-desktop-simple-video__title').addClass('sherer-font');
+    };
 
-        // Add click event for wxv field of copy content
-        $('.sherer-wxv-td').on('click', function () {
-            let wxv = $(this).text();
-            GM_setClipboard(wxv, 'text');
-            message.success(tc('copyed'));
-        });
+    // Parse audio
+    const runAudio = (list) => {
+        if (pathname !== '/cgi-bin/filepage' || query.type != 3) { return; }
+        if (!list || !list.length) { return; }
+        console.log('run audio', list);
+
+        let view = query.view || 'card';
+        if (view == 'card') {
+            $('.weui-desktop-audio-card__info').each(function (index) {
+                let div = $(this);
+                let fileid = list[index].voice_encode_fileid;
+                if (!fileid) { return; }
+
+                div.addClass('sherer-font sherer-flex-column sherer-justify-between');
+                div.find('.weui-desktop-audio-card__item_left_bottom').addClass(`sherer-position-none`);
+
+                let fileUrl = `https://res.wx.qq.com/voice/getvoice?mediaid=${fileid}`;
+                div.find('strong').after(`<span class="sherer-fileid sherer-btn sherer-font sherer-center" data-content="${fileUrl}">${tc('copy_url')}</span>`);
+            });
+        } else if (view == 'list') {
+            // Insert fileid field in thead
+            let th = $(`<th class="sherer-fileid-th sherer-font tc">${tc('url')}</th>`);
+            if (!$('.sherer-fileid-th').length) { $('.weui-desktop-table-audio__content').after(th); }
+
+            // Insert fileid field in tbody
+            if ($('.sherer-fileid-td').length) { return; }
+            $('.weui-desktop-table__bd').find('tr').each(function (index) {
+                let tr = $(this);
+                let check = tr.find('.weui-desktop-audio-player__switch');
+                if (!check.length) { return; }
+                let fileid = list[index].voice_encode_fileid;
+                if (!fileid) { return; }
+
+                let fileUrl = `https://res.wx.qq.com/voice/getvoice?mediaid=${fileid}`;
+                let td = $(`<td><span class="sherer-fileid-td sherer-btn sherer-font" data-content="${fileUrl}">${tc('copy')}</span></td>`);
+                tr.find('td').eq(1).after(td);
+            });
+
+            // Set title field font
+            $('.weui-desktop-audio__title').addClass('sherer-font');
+        }
     };
 
     // Run
-    run((window?.wx?.cgiData || wx?.cgiData || {}).item);
+    runVideo((window?.wx?.cgiData || wx?.cgiData || {}).item);
+    runAudio((window?.wx?.cgiData || wx?.cgiData || {}).file_item);
+
+    // Add click event for copy content
+    $('.sherer-btn').on('click', function () {
+        let fileUrl = $(this).data('content');
+        GM_setClipboard(fileUrl, 'text');
+        message.success(tc('copyed'));
+    });
 })();
