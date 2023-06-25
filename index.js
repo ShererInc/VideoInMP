@@ -24,7 +24,7 @@
     'use strict';
 
     // global variables
-    const debug = true;
+    const debug = false;
     const lang = navigator.language || navigator.userLanguage; // e.g. "en-US"
     const query = Object.fromEntries(new URLSearchParams(window.location.search)); // e.g. { type: "3", begin: "0", count: "20", token: "1412762085", lang: "zh_CN" }
     const pathname = window.location.pathname; // e.g. "/cgi-bin/filepage"
