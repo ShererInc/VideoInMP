@@ -15,21 +15,25 @@ Easy to get video ids(wxv), audio play url and image url in Weixin Official Acco
 
 ## Main Features
 ![video](https://foruda.gitee.com/images/1687749295040109590/afeae931_493486.png "video")
+<br>
 Video material page
 <br>
 <br>
 
 ![audio card](https://foruda.gitee.com/images/1687751056713397077/36e260b2_493486.png "audio card")
+<br>
 Audio material page of card mode
 <br>
 <br>
 
 ![audio list](https://foruda.gitee.com/images/1687751101607027819/5016483a_493486.png "audio list")
+<br>
 Audio material page of list mode
 <br>
 <br>
 
 ![image card](https://foruda.gitee.com/images/1687751145906412671/f8e9fb76_493486.png "image card")
+<br>
 Image material page of card mode
 <br>
 <br>
@@ -59,21 +63,25 @@ Image material page of card mode
 
 ## 主要功能
 ![视频](https://foruda.gitee.com/images/1687749295040109590/afeae931_493486.png "视频")
+<br>
 视频素材页面
 <br>
 <br>
 
 ![音频卡片](https://foruda.gitee.com/images/1687751199725908834/86a4e7dd_493486.png "音频卡片")
+<br>
 音频素材卡片模式页面
 <br>
 <br>
 
 ![音频列表](https://foruda.gitee.com/images/1687751232180947311/05dc65ad_493486.png "音频列表")
+<br>
 音频素材列表模式页面
 <br>
 <br>
 
 ![图片卡片](https://foruda.gitee.com/images/1687751261477632472/286c9ec5_493486.png "图片卡片")
+<br>
 图片素材卡片模式页面
 <br>
 <br>
@@ -103,21 +111,25 @@ Image material page of card mode
 
 ## ئاساسىي ئىقتىدارى
 ![سىن](https://foruda.gitee.com/images/1687749295040109590/afeae931_493486.png "سىن")
+<br>
 سىن بېتىنىڭ كۆرۈنۈشى
 <br>
 <br>
 
 ![ئۈن كارتوچكا](https://foruda.gitee.com/images/1687749355427780996/7bc5f27a_493486.png "ئۈن كارتوچكا")
+<br>
 ئۈن كارتوچكا بېتىنىڭ كۆرۈنۈشى
 <br>
 <br>
 
 ![ئۈن تىزىملىك](https://foruda.gitee.com/images/1687749393723223493/ff14a74f_493486.png "ئۈن تىزىملىك")
+<br>
 ئۈن تىزىملىك بېتىنىڭ كۆرۈنۈشى
 <br>
 <br>
 
 ![رەسىم كارتوچكا](https://foruda.gitee.com/images/1687750673813810429/d534795b_493486.png "رەسىم كارتوچكا")
+<br>
 رەسىم كارتوچكا بېتىنىڭ كۆرۈنۈشى
 <br>
 <br>
