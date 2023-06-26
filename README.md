@@ -1,5 +1,5 @@
 <p align=center>
-  <img height="50" src="https://ixinchuang.com/image/logo_new.png"/>
+  <img height="50" src="https://foruda.gitee.com/images/1687752205209920630/a40c0275_493486.png"/>
   <br>
   <a href="#Weixin-Official-Account-Assistant">English</a>
   <a style="margin:0 20px;" href="#微信公众平台助手">中文</a>
