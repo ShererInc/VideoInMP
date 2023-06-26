@@ -11,7 +11,7 @@
 # Weixin Official Account Assistant
 
 ## Project Introduction
-Easy to get video ids(wxv), audio play url and image url in WeChat Official Accounts Platform
+Easy to get video ids(wxv), audio play url and image url in Weixin Official Accounts Platform
 
 ## Main Features
 ![video](https://foruda.gitee.com/images/1687749295040109590/afeae931_493486.png "video")

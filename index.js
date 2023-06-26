@@ -5,7 +5,7 @@
 // @namespace           https://github.com/ShererInc/Wx-OA-Assistant
 // @version             1.0.0
 // @author              Sherer(شەرەر)
-// @description         Easy to get video ids(wxv), audio play url and image url in WeChat Official Accounts Platform
+// @description         Easy to get video ids(wxv), audio play url and image url in Weixin Official Accounts Platform
 // @description:zh-CN   一键获取微信公众号视频素材ID（wxv），音频素材播放地址和图片地址
 // @description:ug      ‫ئۈندىدار سالونىدىكى سىنلارنىڭ نومۇرى (wxv)، ئۈن قويۇش ئادرېسى ۋە رەسىم ئادرېسىغا ئاسانلا ئېرىشكىلى بولىدۇ
 // @license             MIT
