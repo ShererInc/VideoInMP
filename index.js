@@ -3,7 +3,7 @@
 // @name:zh-CN          微信公众平台助手
 // @name:ug             ئۈندىدار سالون ياردەمچىسى
 // @namespace           https://github.com/ShererInc/Wx-OA-Assistant
-// @version             1.0.0
+// @version             1.1.0
 // @author              Sherer(شەرەر)
 // @description         Easy to get video ids(wxv), audio play url and image url in Weixin Official Accounts Platform
 // @description:zh-CN   一键获取微信公众号视频素材ID（wxv），音频素材播放地址和图片地址
@@ -111,6 +111,7 @@
         .sherer-justify-between { justify-content: space-between; }
         .sherer-position-none { position: static !important; }
         .sherer-center { text-align: center; }
+        .sherer-ml-5 { margin-left: 5px !important; }
     `;
     document.head.appendChild(style);
 
@@ -141,6 +142,18 @@
 
         // Set title field font
         $('.weui-desktop-simple-video__title').addClass('sherer-font');
+
+        // Add copy all data button
+        if ($('.sherer-copy-all').length) { return; }
+        $('.weui-desktop-global__extra .weui-desktop-btn_wrp').find('button').eq(0).after(`<button type="button" class="weui-desktop-btn weui-desktop-btn_primary sherer-ml-5 sherer-copy-all sherer-font">${tc('copy')}</button>`);
+
+        $('.sherer-copy-all').off('click');
+        $('.sherer-copy-all').on('click', function () {
+            let content = JSON.stringify(list);
+            debug && console.log('copy text', content);
+            GM_setClipboard(content, 'text');
+            message.success(tc('copyed'));
+        });
     };
 
     // Parse audio
@@ -184,6 +197,18 @@
             // Set title field font
             $('.weui-desktop-audio__title').addClass('sherer-font');
         }
+
+        // Add copy all data button
+        if ($('.sherer-copy-all').length) { return; }
+        $('.weui-desktop-global__extra .weui-desktop-btn_wrp').find('button').eq(0).after(`<button type="button" class="weui-desktop-btn weui-desktop-btn_primary sherer-ml-5 sherer-copy-all sherer-font">${tc('copy')}</button>`);
+
+        $('.sherer-copy-all').off('click');
+        $('.sherer-copy-all').on('click', function () {
+            let content = JSON.stringify(list);
+            debug && console.log('copy text', content);
+            GM_setClipboard(content, 'text');
+            message.success(tc('copyed'));
+        });
     };
 
     // Parse image
@@ -225,14 +250,27 @@
 
         activeCopyEvent();
         // imageTimer = setTimeout(() => runImage(list), 500);
+
+        // Add copy all data button
+        if ($('.sherer-copy-all').length) { return; }
+        $('.weui-desktop-global__extra .weui-desktop-btn_wrp').find('button').eq(0).after(`<button type="button" class="weui-desktop-btn weui-desktop-btn_primary sherer-ml-5 sherer-copy-all sherer-font">${tc('copy')}</button>`);
+
+        $('.sherer-copy-all').off('click');
+        $('.sherer-copy-all').on('click', function () {
+            let content = JSON.stringify(list);
+            debug && console.log('copy text', content);
+            GM_setClipboard(content, 'text');
+            message.success(tc('copyed'));
+        });
     };
 
     // Add click event for copy content
     const activeCopyEvent = () => {
-        $('.sherer-btn').off('click');
-        $('.sherer-btn').on('click', function () {
+        $('.sherer-btn,.sherer-copy').off('click');
+        $('.sherer-btn,.sherer-copy').on('click', function () {
             let content = $(this).data('content');
             if (!content) { return; }
+            debug && console.log('copy text', content);
             GM_setClipboard(content, 'text');
             message.success(tc('copyed'));
         });

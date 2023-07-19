@@ -40,6 +40,9 @@ Image material page of card mode
 
 ## Change Logs
 
+### v1.1.0 (2023/07/19)
+- added copy all data button for video, audio and image
+
 ### v1.0.0 (2023/06/26)
 - added copy play url in audio material
 - added copy image url in image material
@@ -88,6 +91,9 @@ Image material page of card mode
 
 ## 更新历史
 
+### v1.1.0（2023/07/19）
+- 新增 视频、音频、图片素材中一键复制所有数据按钮
+
 ### v1.0.0（2023/06/26）
 - 新增 音频素材中复制播放地址
 - 新增 图片素材中复制图片地址
@@ -135,6 +141,8 @@ Image material page of card mode
 <br>
 
 ## يېڭىلاش تارىخى
+
+### نەشر 1.1.0 (2023/07/19)
 
 ### نەشر 1.0.0 (2023/06/26)
 
